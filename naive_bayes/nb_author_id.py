@@ -12,6 +12,7 @@
     
 import sys
 from time import time
+from sklearn.naive_bayes import GaussianNB
 sys.path.append("../tools/")
 from email_preprocess import preprocess
 
@@ -26,8 +27,12 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
-
-
+clf = GaussianNB()
+t0 = time()
+clf.fit(features_train, labels_train)
+print(f"Training time for {len(features_train)} samples was {round(time()-t0, 3)}s")
+accuracy = clf.score(features_test, labels_test)
+print(f"Accuracy of Naive Bayes email classifier is {100*accuracy:3.4f}%")
 #########################################################
 
 

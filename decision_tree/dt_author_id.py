@@ -24,8 +24,17 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
+def main():
+    from sklearn.tree import DecisionTreeClassifier
+    clf = DecisionTreeClassifier(min_samples_split=40)
+    print("Starting to train a decision tree classifier")
+    t0 = time()
+    clf.fit(features_train, labels_train)
+    print(f"Decision Tree took {time()-t0:3.3f} seconds to train")
+    acc = clf.score(features_test, labels_test)
+    print(f"Accuracy was {100*acc: 3.5f}")
 
-
+main()
 #########################################################
 
 
